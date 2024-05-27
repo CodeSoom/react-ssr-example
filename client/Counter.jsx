@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
-export const Counter = () => {
-  const [count, setState] = useState(performance.now() % 1);
+export const Counter = async () => {
+  const [count, setState] = useState(0);
 
   const handleClick = () => {
     setState((value) => value + 1);

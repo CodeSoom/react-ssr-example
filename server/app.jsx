@@ -6,7 +6,7 @@ import { App } from '../client/App';
 
 const app = express();
 
-app.use(express.static('dist'))
+app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
   const { pipe } = renderToPipeableStream(<App />, {
