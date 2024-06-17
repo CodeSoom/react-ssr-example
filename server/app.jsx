@@ -9,11 +9,20 @@ const app = express();
 app.use(express.static('dist'));
 
 app.get('/', (req, res) => {
-  const { pipe } = renderToPipeableStream(<App />, {
+  const products = [
+    { id: 1, name: '고양이 장난감', price: 5000 },
+    { id: 2, name: '강아지 장난감', price: 4500 },
+  ];
+
+  const { pipe } = renderToPipeableStream(<App products={products} />, {
     bootstrapScripts: ['main.js'],
     onShellReady() {
       res.setHeader('content-type', 'text/html');
-      pipe(res);
+      pipe(res, { end: false });
+    },
+    onAllReady() {
+      res.write(`<script>window.__INITIAL_DATA__ = ${JSON.stringify(products)}</script>`);
+      res.end();
     }
   });
 });

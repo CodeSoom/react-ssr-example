@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export const Counter = async () => {
+export const Counter = () => {
   const [count, setState] = useState(0);
 
   const handleClick = () => {
